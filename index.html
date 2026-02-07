@@ -8,6 +8,16 @@
         content="DJ Paulhyyy - Som, corpo e identidade em estado bruto. Drum and Bass, House, Techno e cultura Queer.">
     <title>DJ Paulhyyy | Som e Identidade</title>
 
+    <!-- SEO & Social Meta Tags -->
+    <meta name="keywords" content="DJ, Paulhy, Techno, House, Queer, Música Eletrônica, Brasil, BallRoom">
+    <meta name="author" content="Paulhy">
+    <meta property="og:title" content="DJ Pauly | Som e Identidade">
+    <meta property="og:description"
+        content="Som, corpo e identidade em estado bruto. Drum and Bass, House, Techno e cultura Queer.">
+    <meta property="og:image" content="https://paulhy.vercel.app">
+    <meta property="og:url" content="https://paulhy.vercel.app">
+    <meta property="og:type" content="website">
+
     <link rel="stylesheet" href="style.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -125,6 +135,15 @@
             <p class="copyright">&copy; 2026 DJ Paulhy. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox">
+        <span class="close-lightbox">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+        <div class="lightbox-caption"></div>
+        <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+        <a class="next" onclick="changeSlide(1)">&#10095;</a>
+    </div>
 
     <script src="script.js"></script>
 </body>
