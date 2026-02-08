@@ -1,0 +1,477 @@
+/* ====================================================================
+  LANDING PAGE ARTÍSTICA - STYLE.CSS
+  Conceito: Sensual, Íntimo, Urbano, Minimalista
+  Autor: Gemini AI
+==================================================================== 
+*/
+
+/* ====================================================================
+  1. VARIÁVEIS & DESIGN SYSTEM (:root)
+==================================================================== 
+*/
+:root {
+    /* Paleta de Cores */
+    --bg-primary: #0D0D0D;
+    /* Preto Profundo */
+    --bg-secondary: #1A1A1A;
+    /* Grafite */
+    --text-primary: #F2F2EE;
+    /* Off-white */
+    --text-secondary: #B3B3B3;
+    /* Cinza Quente */
+    --accent-primary: #8C1D18;
+    /* Vermelho Queimado */
+    --accent-secondary: #B24A2F;
+    /* Terracota */
+
+    /* Tipografia */
+    --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --text-base: 1rem;
+    --text-sm: 0.875rem;
+    --text-lg: 1.25rem;
+    --heading-xl: clamp(2.5rem, 8vw, 5rem);
+    /* Fluido */
+    --heading-lg: clamp(1.75rem, 5vw, 3rem);
+    --heading-md: 1.5rem;
+
+    /* Espaçamentos e Layout */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1.5rem;
+    --spacing-md: 3rem;
+    --spacing-lg: 6rem;
+    --spacing-xl: 10rem;
+    --container-width: 1200px;
+    --header-height: 80px;
+
+    /* Bordas e UI */
+    --border-thin: 1px solid;
+    --radius-sm: 2px;
+    --radius-md: 4px;
+
+    /* Transições e Animações */
+    --ease-standard: cubic-bezier(0.4, 0.0, 0.2, 1);
+    --duration-short: 200ms;
+    --duration-medium: 400ms;
+}
+
+/* ====================================================================
+  2. RESET & BASE
+==================================================================== 
+*/
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-stack);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+}
+
+/* Tipografia Base */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-bottom: var(--spacing-sm);
+}
+
+p {
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-sm);
+    max-width: 65ch;
+    /* Limite de leitura confortável */
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: color var(--duration-short) var(--ease-standard);
+}
+
+ul {
+    list-style: none;
+}
+
+img,
+video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ====================================================================
+  3. LAYOUT & UTILITÁRIOS
+==================================================================== 
+*/
+.container {
+    width: 90%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing-sm);
+}
+
+/* Espaçamento vertical generoso para "Silêncio Visual" */
+.section {
+    padding: var(--spacing-lg) 0;
+    position: relative;
+}
+
+/* Utilitários de Texto */
+.text-center {
+    text-align: center;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.text-accent {
+    color: var(--accent-primary);
+}
+
+/* ====================================================================
+  4. COMPONENTES (BOTÕES & UI)
+==================================================================== 
+*/
+
+/* Botão Base: Minimalista, Borda Fina */
+.btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: transparent;
+    border: var(--border-thin) var(--text-primary);
+    color: var(--text-primary);
+    font-family: var(--font-stack);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    cursor: pointer;
+    transition: all var(--duration-medium) var(--ease-standard);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Estado Hover: Inversão de cores */
+.btn:hover,
+.btn:focus {
+    background-color: var(--text-primary);
+    color: var(--bg-primary);
+    outline: none;
+}
+
+/* Variação Secundária (Acento) */
+.btn-secondary {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+    background-color: var(--accent-primary);
+    color: var(--text-primary);
+}
+
+/* Labels/Tags */
+.tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+    border: 1px solid var(--bg-secondary);
+    padding: 0.5rem 1rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    transition: border-color var(--duration-short);
+}
+
+.tag:hover {
+    border-color: var(--accent-primary);
+    color: var(--text-primary);
+}
+
+/* ====================================================================
+  5. HERO SECTION (IMPACTO)
+==================================================================== 
+*/
+.hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: radial-gradient(circle at center, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+    padding: var(--spacing-lg) var(--spacing-sm);
+}
+
+.hero-title {
+    font-size: var(--heading-xl);
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    margin-bottom: var(--spacing-sm);
+    line-height: 0.9;
+}
+
+.hero-tagline {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-md);
+    opacity: 0.8;
+}
+
+/* ====================================================================
+  6. SEÇÃO: SOBRE (EDITORIAL)
+==================================================================== 
+*/
+.about {
+    background-color: var(--bg-primary);
+}
+
+.about-content {
+    border-left: 1px solid var(--bg-secondary);
+    padding-left: var(--spacing-sm);
+}
+
+.about h2 {
+    font-size: var(--heading-lg);
+    margin-bottom: var(--spacing-md);
+}
+
+.about p {
+    font-size: 1.125rem;
+}
+
+/* Destaque no texto corrido */
+.highlight-text {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+/* ====================================================================
+  7. SEÇÃO: IDENTIDADE & DESTAQUES
+==================================================================== 
+*/
+.identity {
+    padding-top: 0;
+}
+
+.concept-phrases {
+    font-family: serif;
+    /* Toque editorial clássico */
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--accent-secondary);
+    margin-top: var(--spacing-sm);
+}
+
+/* Container de Destaques */
+.highlights {
+    background-color: var(--bg-secondary);
+}
+
+.highlights-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+}
+
+/* Cards de Música/Prêmios */
+.card {
+    background-color: var(--bg-primary);
+    padding: 2rem;
+    position: relative;
+    transition: transform var(--duration-medium) var(--ease-standard);
+    border: 1px solid transparent;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    border-color: var(--bg-secondary);
+}
+
+/* Linha decorativa superior no hover */
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent-primary);
+    transition: width var(--duration-medium) var(--ease-standard);
+}
+
+.card:hover::before {
+    width: 100%;
+}
+
+.card-meta {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.75rem;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+/* ====================================================================
+  8. SEÇÃO: MÍDIA (DARK MODE)
+==================================================================== 
+*/
+.media {
+    background-color: var(--bg-primary);
+}
+
+.media-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-sm);
+}
+
+/* Placeholder para vídeo */
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    /* Aspect Ratio 16:9 */
+    background-color: var(--bg-secondary);
+    border: 1px solid #333;
+    transition: border-color var(--duration-short);
+}
+
+.video-wrapper:hover {
+    border-color: var(--accent-primary);
+}
+
+.video-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+}
+
+/* ====================================================================
+  9. CONTATO & FOOTER
+==================================================================== 
+*/
+.contact {
+    border-top: 1px solid var(--bg-secondary);
+    text-align: center;
+}
+
+.contact-email {
+    display: block;
+    font-size: clamp(1.5rem, 5vw, 3.5rem);
+    font-weight: 300;
+    color: var(--text-primary);
+    margin: var(--spacing-md) 0;
+    transition: color var(--duration-medium);
+}
+
+.contact-email:hover {
+    color: var(--accent-secondary);
+}
+
+footer {
+    padding: var(--spacing-md) 0;
+    border-top: 1px solid var(--bg-secondary);
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.social-list {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+}
+
+.social-link {
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+}
+
+.social-link:hover {
+    color: var(--accent-primary);
+}
+
+/* ====================================================================
+  10. RESPONSIVIDADE (MEDIA QUERIES)
+  Mobile-First: estilos acima são base. Aqui expandimos.
+==================================================================== 
+*/
+
+/* Tablet e acima (>= 768px) */
+@media (min-width: 768px) {
+    :root {
+        --spacing-sm: 2rem;
+        --spacing-md: 4rem;
+        --spacing-lg: 8rem;
+    }
+
+    .about-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--spacing-md);
+        align-items: center;
+    }
+
+    /* Ajuste visual para grid highlights */
+    .highlights-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .media-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Desktop Large (>= 1024px) */
+@media (min-width: 1024px) {
+    .hero-title {
+        margin-bottom: 2rem;
+    }
+
+    .btn {
+        padding: 1.25rem 3rem;
+    }
+}

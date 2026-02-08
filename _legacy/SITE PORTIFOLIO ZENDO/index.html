@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZENDO | Cantor e Compositor</title>
+    <meta name="description"
+        content="Portfólio oficial de Zendo. Artista de Recife que mistura Pop, Hip-hop, R&B e Brega com sensualidade e sensibilidade. Confira o EP Âmago e o hit Sagaz.">
+
+    <style>
+        /* * ==========================================
+         * VARIÁVEIS & RESET
+         * ==========================================
+         */
+        :root {
+            /* Paleta de Cores */
+            --bg-main: #0D0D0D;
+            /* Preto Profundo */
+            --bg-sec: #1A1A1A;
+            /* Grafite */
+            --text-main: #F2F2EE;
+            /* Off-white */
+            --text-sec: #B3B3B3;
+            /* Cinza Quente */
+            --accent: #8C1D18;
+            /* Vermelho Queimado */
+            --accent-light: #B24A2F;
+            /* Terracota */
+
+            /* Tipografia */
+            --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --spacing-sm: 1.5rem;
+            --spacing-md: 3rem;
+            --spacing-lg: 6rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            font-family: var(--font-stack);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* * ==========================================
+         * UTILITÁRIOS & TIPOGRAFIA
+         * ==========================================
+         */
+        h1,
+        h2,
+        h3 {
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-main);
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Pequeno detalhe editorial no título */
+        h2::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 0;
+            width: 30px;
+            height: 1px;
+            background-color: var(--accent);
+        }
+
+        p {
+            color: var(--text-sec);
+            font-size: 1.1rem;
+            max-width: 600px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Botões Minimalistas */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            border: 1px solid var(--text-main);
+            color: var(--text-main);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            background: transparent;
+            cursor: pointer;
+            margin-top: var(--spacing-sm);
+        }
+
+        .btn:hover {
+            background-color: var(--text-main);
+            color: var(--bg-main);
+        }
+
+        .btn-secondary {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--accent);
+            color: var(--text-main);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-sm);
+        }
+
+        section {
+            padding: var(--spacing-md) 0;
+        }
+
+        /* * ==========================================
+         * 1. HERO SECTION
+         * ==========================================
+         */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            /* Placeholder visual de fundo */
+            background: radial-gradient(circle at center, #1a1a1a 0%, #0d0d0d 100%);
+        }
+
+        /* Placeholder para imagem de fundo do artista */
+        .hero-bg-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.2;
+            background-image: linear-gradient(45deg, #0d0d0d 25%, transparent 25%),
+                linear-gradient(-45deg, #0d0d0d 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #0d0d0d 75%),
+                linear-gradient(-45deg, transparent 75%, #0d0d0d 75%);
+            background-size: 20px 20px;
+            z-index: 0;
+            /* COMENTÁRIO: Substituir este bloco por <img> ou background-image real do artista */
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .artist-name {
+            font-size: clamp(3rem, 10vw, 8rem);
+            text-transform: uppercase;
+            letter-spacing: -0.05em;
+            margin-bottom: 1rem;
+            line-height: 0.9;
+        }
+
+        .tagline {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            color: var(--text-sec);
+            font-style: italic;
+            font-weight: 300;
+            margin-bottom: 2rem;
+        }
+
+        /* * ==========================================
+         * 2. SOBRE (Identidade)
+         * ==========================================
+         */
+        .about {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-md);
+        }
+
+        .about-text {
+            border-left: 1px solid var(--bg-sec);
+            padding-left: var(--spacing-sm);
+        }
+
+        .highlight-text {
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        /* * ==========================================
+         * 3. IDENTIDADE MUSICAL
+         * ==========================================
+         */
+        .genres-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .genre-tag {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-sec);
+            border: 1px solid var(--bg-sec);
+            padding: 0.5rem 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .genre-tag:hover {
+            border-color: var(--accent);
+            color: var(--text-main);
+        }
+
+        .concept-phrases {
+            margin-top: 2rem;
+            font-family: serif;
+            /* Toque editorial */
+            font-style: italic;
+            color: var(--accent-light);
+        }
+
+        /* * ==========================================
+         * 4. DESTAQUES
+         * ==========================================
+         */
+        .highlights {
+            background-color: var(--bg-sec);
+            padding: var(--spacing-lg) 0;
+        }
+
+        .grid-highlights {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: var(--bg-main);
+            padding: 2rem;
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Linha decorativa no card */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--bg-sec);
+            transition: background-color 0.3s;
+        }
+
+        .card:hover::before {
+            background-color: var(--accent);
+        }
+
+        .card-type {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--text-sec);
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        /* * ==========================================
+         * 5. MÍDIA
+         * ==========================================
+         */
+        .media-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .video-placeholder {
+            background-color: var(--bg-sec);
+            aspect-ratio: 16/9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-sec);
+            font-size: 0.9rem;
+            border: 1px solid #333;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+
+        .video-placeholder:hover {
+            border-color: var(--accent);
+            color: var(--text-main);
+        }
+
+        /* * ==========================================
+         * 6. CONTATO & FOOTER
+         * ==========================================
+         */
+        .contact {
+            text-align: center;
+            padding: var(--spacing-lg) 0;
+            border-top: 1px solid var(--bg-sec);
+        }
+
+        .email-link {
+            font-size: clamp(1.5rem, 4vw, 3rem);
+            font-weight: 300;
+            color: var(--text-main);
+            display: block;
+            margin: 2rem 0;
+        }
+
+        .email-link:hover {
+            color: var(--accent-light);
+        }
+
+        footer {
+            padding: var(--spacing-md) 0;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-sec);
+            border-top: 1px solid var(--bg-sec);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links a {
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.75rem;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+        }
+
+        /* * ==========================================
+         * MEDIA QUERIES (Tablet/Desktop)
+         * ==========================================
+         */
+        @media (min-width: 768px) {
+            section {
+                padding: var(--spacing-lg) 0;
+            }
+
+            .about {
+                grid-template-columns: 1fr 1fr;
+                align-items: center;
+            }
+
+            .grid-highlights {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .media-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="hero">
+        <div class="hero-bg-placeholder">
+        </div>
+        <div class="hero-content container">
+            <h1 class="artist-name">ZENDO</h1>
+            <p class="tagline">O novo som de Recife. Sensualidade e sensibilidade.</p>
+            <a href="#destaques" class="btn">Ouvir Agora</a>
+        </div>
+    </header>
+
+    <main>
+
+        <section class="container about" id="sobre">
+            <div>
+                <h2>O Artista</h2>
+            </div>
+            <div class="about-text">
+                <p>
+                    <span class="highlight-text">Zendo</span> é um cantor e compositor independente brasileiro, natural
+                    de <strong>Recife, Pernambuco</strong>.
+                    Ganhando destaque na cena contemporânea, ele mistura o calor do Nordeste com batidas globais.
+                    <br><br>
+                    Suas composições são marcadas por uma combinação única de <span class="highlight-text">sensualidade
+                        e sensibilidade</span>,
+                    criando uma atmosfera que envolve e provoca. Do caos urbano ao intimismo, Zendo traduz sentimentos
+                    complexos em melodias viciantes.
+                </p>
+            </div>
+        </section>
+
+        <section class="container">
+            <div class="identity">
+                <h2>Identidade Musical</h2>
+                <div class="genres-list">
+                    <span class="genre-tag">Pop</span>
+                    <span class="genre-tag">Hip-Hop</span>
+                    <span class="genre-tag">R&B</span>
+                    <span class="genre-tag">Brega</span>
+                </div>
+                <div class="concept-phrases">
+                    "Uma fusão autêntica de ritmos e emoções."
+                </div>
+            </div>
+        </section>
+
+        <section class="highlights" id="destaques">
+            <div class="container">
+                <h2>Conquistas & Obras</h2>
+                <div class="grid-highlights">
+
+                    <article class="card">
+                        <span class="card-type">EP Autorais</span>
+                        <h3 class="card-title">Âmago</h3>
+                        <p style="font-size: 0.9rem;">O projeto que define a essência do artista. Disponível em todas as
+                            plataformas.</p>
+                        <a href="#"
+                            style="font-size: 0.8rem; margin-top: 1rem; display:block; color:var(--accent);">Ouça no
+                            Spotify &rarr;</a>
+                    </article>
+
+                    <article class="card">
+                        <span class="card-type">Single Hit</span>
+                        <h3 class="card-title">Sagaz</h3>
+                        <p style="font-size: 0.9rem;">+5.000 reproduções. Um dos maiores sucessos da carreira.</p>
+                        <a href="#" style="font-size: 0.8rem; margin-top: 1rem; display:block; color:var(--accent);">Ver
+                            Clipe &rarr;</a>
+                    </article>
+
+                    <article class="card">
+                        <span class="card-type">Prêmio</span>
+                        <h3 class="card-title">Let’s Play 2023</h3>
+                        <p style="font-size: 0.9rem;">Vencedor da seletiva do festival REC'n'Play.</p>
+                    </article>
+
+                </div>
+
+                <div
+                    style="margin-top: 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                    <article class="card" style="padding: 1.5rem;">
+                        <span class="card-type">Faixa</span>
+                        <h4 style="font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--text-main);">Dispara</h4>
+                    </article>
+                    <article class="card" style="padding: 1.5rem;">
+                        <span class="card-type">Faixa</span>
+                        <h4 style="font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--text-main);">Capricho</h4>
+                    </article>
+                    <article class="card" style="padding: 1.5rem;">
+                        <span class="card-type">Feat Doralyce</span>
+                        <h4 style="font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--text-main);">Não Dá Mais</h4>
+                    </article>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="container" id="media">
+            <h2>Clipes & Visuais</h2>
+            <div class="media-grid">
+                <div class="video-placeholder">
+                    <span>[CLIPE OFICIAL: SAGAZ]</span>
+                </div>
+
+                <div class="video-placeholder">
+                    <span>[VISUALIZER: ÂMAGO]</span>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="https://www.youtube.com/@zendo" target="_blank" class="btn btn-secondary">Inscreva-se no
+                    YouTube</a>
+            </div>
+        </section>
+
+        <section class="contact container" id="contato">
+            <span class="card-type">Contato & Shows</span>
+            <a href="mailto:contato.zendo@email.com" class="email-link">contato.zendo@email.com</a>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#">Instagram</a>
+                <a href="#">Spotify</a>
+                <a href="#">YouTube</a>
+            </div>
+            <p>&copy; 2024 Zendo. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

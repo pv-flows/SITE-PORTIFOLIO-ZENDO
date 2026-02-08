@@ -1,0 +1,55 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-body);
+    line-height: 1.8;
+    /* More breathing room */
+    letter-spacing: 0.02em;
+    /* Slight airiness */
+    scroll-behavior: smooth;
+}
+
+/* Tipografia: Minimalist & Expressive */
+h1,
+h2,
+h3 {
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--primary-color);
+    /* Structural Blue */
+    letter-spacing: -0.02em;
+}
+
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    /* More space */
+    border-left: none;
+    /* Removing harsh border */
+    position: relative;
+    display: inline-block;
+}
+
+h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--accent-color);
+    /* Pink Veil */
+    margin-top: 0.5rem;
+    opacity: 0.8;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: 0.3s;
+}

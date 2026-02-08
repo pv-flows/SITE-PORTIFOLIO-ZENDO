@@ -1,0 +1,35 @@
+:root {
+    /* Artistic Visual Identity: Intimacy, Structure, and Breath */
+
+    /* Backgrounds: Minimalist & Contemplative */
+    --bg-color: #fdfbfb;
+    /* Off-white, breathing space */
+    --bg-secondary: #f4f4f6;
+    /* Very light gray for subtle separation */
+
+    /* Text: Soft & Legible */
+    --text-color: #2c3e50;
+    /* Dark Blue-Gray, not harsh black */
+    --text-light: #7f8c8d;
+    /* Muted Gray for secondary text */
+
+    /* Identity Colors */
+    --primary-color: #546e7a;
+    /* Opaque Denim Blue: Structural, Urban, Tactile */
+    --accent-color: #e6c9c9;
+    /* Pastel Pink: Emotional Layer, Veil, Intimacy */
+    --detail-color: #a4b0a6;
+    /* Subtle Green: Memory, Harmony, Life */
+
+    /* Typography */
+    --font-heading: 'Syne', sans-serif;
+    /* Art & Presence */
+    --font-body: 'Inter', sans-serif;
+    /* Clarity & Modernity */
+
+    /* Spacing & Layout */
+    --spacing-unit: 1.5rem;
+    /* Generous spacing for "breathing" */
+    --border-radius: 8px;
+    /* Soft corners, not rigid */
+}
