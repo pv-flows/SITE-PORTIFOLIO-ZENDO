@@ -6,7 +6,7 @@ export const content = {
         author: "Zendo",
         og: {
             title: "ZENDO | Cantor e Compositor",
-            description: "O novo som de Recife. Sensualidade e sensibilidade.",
+            description: "Música para sentir antes de entender.",
             image: "assets/img/hero-bg.jpg",
             url: "https://zendo.official",
             type: "website"
@@ -17,14 +17,16 @@ export const content = {
         links: [
             { href: "#home", text: "Início" },
             { href: "#sobre", text: "O Artista" },
-            { href: "#sets", text: "Destaques" },
-            { href: "#galeria", text: "Clipes" },
+            { href: "#conquistas", text: "Conquistas" },
+            { href: "#spotify", text: "Spotify" },
+            { href: "#youtube", text: "YouTube" },
+            { href: "#galeria", text: "Fotos" },
             { href: "#contato", text: "Contato", class: "btn-nav" }
         ]
     },
     hero: {
         title: "ZENDO",
-        subtitle: "O novo som de Recife. Sensualidade e sensibilidade.",
+        subtitle: "Música para sentir antes de entender.",
         cta: { href: "#sets", text: "Ouvir Agora" }
     },
     bio: {
@@ -41,19 +43,42 @@ export const content = {
     },
     sets: {
         title: "Conquistas & Obras",
+        achievements: {
+            awards: {
+                title: "Conquistas",
+                items: [
+                    { subtitle: "Vencedor da seletiva “Let’s Play 2023” do REC’n’Play", text: "Reconhecimento importante dentro de um dos maiores festivais de inovação, cultura e tecnologia do Nordeste, ampliando sua visibilidade na cena musical contemporânea." },
+                    { subtitle: "Destaque na cena independente recifense", text: "Consolidação como artista emergente que dialoga com o pop alternativo, a música urbana e referências brasileiras, especialmente do Nordeste." }
+                ]
+            },
+            discography: {
+                title: "Obras e Discografia",
+                items: [
+                    { type: "EP", title: "Âmago", text: "Projeto autoral que marca uma fase mais íntima e conceitual do artista, explorando afetos, desejo, vulnerabilidade e identidade sonora." },
+                    { type: "Single", title: "Sagaz", text: "Faixa de destaque que ultrapassou 5 mil reproduções no Spotify, ajudando a ampliar o alcance do artista nas plataformas digitais." },
+                    { type: "Single", title: "Dispara", text: "Música que reforça a estética sensual e emocional do projeto." },
+                    { type: "Single", title: "Capricho", text: "Faixa que dialoga com referências do pop e da música brasileira contemporânea." },
+                    { type: "Feat", title: "Não Dá Mais (feat. Doralyce)", text: "Colaboração que evidencia o diálogo do artista com outros nomes relevantes da cena independente." }
+                ]
+            }
+        },
+        channelUrl: "https://www.youtube.com/@euzendo",
         soundcloud: {
-            iframeSrc: "https://open.spotify.com/embed/artist/0Skk053T4ToK44sw09CPlI?utm_source=generator", // Using Soundcloud container for Spotify as requested
-            isSpotify: true // Flag to handle iframe differently if needed
+            sectionTitle: "Spotify",
+            description: "Escute minhas faixas mais populares e lançamentos recentes.",
+            iframeSrc: "https://open.spotify.com/embed/artist/0Skk053T4ToK44sw09CPlI?utm_source=generator",
+            isSpotify: true
         },
-        deezer: {
-            iframeSrc: "https://widget.deezer.com/widget/dark/artist/201690427/top_tracks"
-        },
-        youtube: [
-            { iframeSrc: "https://www.youtube.com/embed/f73db7r3Xf8" },
-            { iframeSrc: "https://www.youtube.com/embed/F_Mi6IL41hY" },
-            { iframeSrc: "https://www.youtube.com/embed/NKzp2ryFkpg" },
-            { iframeSrc: "https://www.youtube.com/embed/yCGLpymTjh4" }
-        ]
+        youtube: {
+            sectionTitle: "YouTube",
+            description: "Explore meus videoclipes oficiais e obras audiovisuais.",
+            videos: [
+                { iframeSrc: "https://www.youtube.com/embed/f73db7r3Xf8" },
+                { iframeSrc: "https://www.youtube.com/embed/F_Mi6IL41hY" },
+                { iframeSrc: "https://www.youtube.com/embed/NKzp2ryFkpg" },
+                { iframeSrc: "https://www.youtube.com/embed/yCGLpymTjh4" }
+            ]
+        }
     },
     gallery: {
         title: "Clipes & Visuais",
@@ -92,7 +117,7 @@ export const content = {
             { href: "https://music.apple.com/br/artist/zendo/1610230413", text: "Apple Music" },
             { href: "https://www.youtube.com/@zendo", text: "YouTube" }
         ],
-        copyright: "&copy; 2024 Zendo. Todos os direitos reservados."
+        copyright: "&copy; 2026 Zendo. Todos os direitos reservados."
     }
 };
 

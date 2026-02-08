@@ -40,23 +40,53 @@
 }
 
 /* Highlight Text */
+/* Highlight Text - Rose Gold Scribble */
 .highlight {
     color: var(--primary-color);
     position: relative;
     z-index: 1;
+    display: inline-block;
 }
 
 .highlight::before {
     content: '';
     position: absolute;
-    bottom: 2px;
-    left: -5px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 105%;
-    height: 10px;
-    background: var(--accent-color);
+    height: 70%;
     z-index: -1;
-    opacity: 0.6;
-    transform: rotate(-1deg);
+    opacity: 0.8;
+    background: #e6b1b7;
+    /* Rose Gold base */
+    border-radius: 2px;
+    mix-blend-mode: multiply;
+    /* Helps it look like ink on paper */
+}
+
+/* Variant 1: Slight rotation, jagged edges */
+.highlight.variant-1::before {
+    transform: translate(-50%, -45%) rotate(-1deg) skewX(-10deg);
+    border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+    background: linear-gradient(to right, rgba(230, 177, 183, 0.9) 0%, rgba(230, 177, 183, 0.7) 100%);
+}
+
+/* Variant 2: Opposite rotation, different border radius */
+.highlight.variant-2::before {
+    transform: translate(-50%, -55%) rotate(0.5deg) skewX(5deg);
+    border-radius: 25px 225px 25px 225px/225px 25px 225px 25px;
+    height: 80%;
+    background: linear-gradient(to left, rgba(230, 177, 183, 0.8) 0%, rgba(230, 177, 183, 0.95) 100%);
+}
+
+/* Variant 3: Thicker, flatter */
+.highlight.variant-3::before {
+    transform: translate(-50%, -50%) rotate(-0.5deg);
+    border-radius: 15px 225px 15px 255px/255px 15px 225px 15px;
+    width: 108%;
+    height: 65%;
+    background: linear-gradient(100deg, rgba(230, 177, 183, 1) 20%, rgba(230, 177, 183, 0.6) 80%);
 }
 
 /* Bio Stats */
@@ -254,5 +284,62 @@
 @media only screen and (max-width: 700px) {
     .lightbox-content {
         width: 100%;
+    }
+}
+
+/* Scroll Offset for Fixed Navbar */
+#home,
+#sobre,
+#sets,
+#galeria,
+#colab,
+#contato,
+#youtube,
+#conquistas,
+#spotify {
+    scroll-margin-top: 100px;
+}
+
+/* Achievements Section */
+.achievements-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 4rem;
+    text-align: left;
+    background: #fff;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.achievement-section h3 {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    border-bottom: 2px solid var(--detail-color);
+    padding-bottom: 0.5rem;
+    display: inline-block;
+}
+
+.achievement-item {
+    margin-bottom: 1.5rem;
+}
+
+.achievement-item h4 {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+.achievement-item p {
+    font-size: 0.95rem;
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .achievements-container {
+        grid-template-columns: 1fr;
     }
 }

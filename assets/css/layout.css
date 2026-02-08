@@ -100,7 +100,7 @@
     background: var(--bg-secondary);
     /* Soft gray instead of #111 */
     padding: 5rem 5%;
-    text-align: center;
+    text-align: left;
 }
 
 /* Footer */

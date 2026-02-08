@@ -111,20 +111,75 @@ function loadSets() {
     const h2 = setsSection.querySelector('h2');
     if (h2) h2.textContent = content.sets.title;
 
+    // Achievements & Discography
+    if (content.sets.achievements) {
+        let achievementsContainer = setsSection.querySelector('#conquistas');
+        if (!achievementsContainer) {
+            achievementsContainer = document.createElement('div');
+            achievementsContainer.id = 'conquistas';
+            achievementsContainer.className = 'achievements-container';
+            // Insert after title
+            if (h2) h2.after(achievementsContainer);
+            else setsSection.prepend(achievementsContainer);
+        }
+
+        achievementsContainer.innerHTML = '';
+
+        const createSection = (data) => {
+            const section = document.createElement('div');
+            section.className = 'achievement-section';
+            section.innerHTML = `<h3>${data.title}</h3>`;
+
+            const list = document.createElement('div');
+            list.className = 'achievement-list';
+
+            data.items.forEach((item, index) => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'achievement-item';
+                if (item.type) {
+                    // Add variant class for random scribble effect
+                    const variant = (index % 3) + 1;
+                    itemDiv.innerHTML = `<h4><span class="highlight variant-${variant}">${item.title}</span> <small>(${item.type})</small></h4><p>${item.text}</p>`;
+                } else {
+                    itemDiv.innerHTML = `<h4>${item.subtitle}</h4><p>${item.text}</p>`;
+                }
+                list.appendChild(itemDiv);
+            });
+            section.appendChild(list);
+            return section;
+        };
+
+        if (content.sets.achievements.awards) {
+            achievementsContainer.appendChild(createSection(content.sets.achievements.awards));
+        }
+        if (content.sets.achievements.discography) {
+            achievementsContainer.appendChild(createSection(content.sets.achievements.discography));
+        }
+    }
+
     // Spotify (formerly Soundcloud container)
     const scContainer = setsSection.querySelector('.soundcloud-container');
     if (scContainer && content.sets.soundcloud) {
-        // If it's marked as Spotify, we use a different iframe structure or just inject the src
+        // Add ID for navigation
+        scContainer.id = 'spotify';
+
+        let html = '';
+        if (content.sets.soundcloud.sectionTitle) {
+            html += `<h3>${content.sets.soundcloud.sectionTitle}</h3>`;
+        }
+        if (content.sets.soundcloud.description) {
+            html += `<p>${content.sets.soundcloud.description}</p>`;
+        }
+
         if (content.sets.soundcloud.isSpotify) {
-            scContainer.innerHTML = `
+            html += `
                 <iframe style="border-radius:12px" src="${content.sets.soundcloud.iframeSrc}" 
                 width="100%" height="352" frameBorder="0" 
                 allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
                 loading="lazy"></iframe>
             `;
-            // Hide footer if it exists or clear styles associated with SC footer
         } else {
-            scContainer.innerHTML = `
+            html += `
                 <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay"
                     src="${content.sets.soundcloud.iframeSrc}"></iframe>
                 <div class="soundcloud-footer">
@@ -133,47 +188,50 @@ function loadSets() {
                 </div>
             `;
         }
+        scContainer.innerHTML = html;
     }
 
-    // Mixcloud - Clear or Hide if not used in new content structure
+    // Mixcloud / Deezer Containers - Clear/Hide
     const mcContainer = setsSection.querySelector('.mixcloud-container');
-    if (mcContainer) {
-        if (content.sets.mixcloud) {
-            mcContainer.innerHTML = `
-                 <iframe width="100%" height="120"
-                    src="${content.sets.mixcloud.iframeSrc}" frameborder="0"
-                    allow="encrypted-media; fullscreen; autoplay; idle-detection; speaker-selection; web-share;"></iframe>
-            `;
-        } else {
-            mcContainer.style.display = 'none';
-        }
-    }
+    if (mcContainer) mcContainer.style.display = 'none';
 
-    // Deezer (using mixcloud container for layout recyclable)
-    const deezerContainer = setsSection.querySelector('.mixcloud-container');
-    if (deezerContainer) {
-        if (content.sets.deezer) {
-            deezerContainer.style.display = 'block';
-            deezerContainer.innerHTML = `
-                 <iframe title="deezer-widget" src="${content.sets.deezer.iframeSrc}" width="100%" height="300" frameborder="0" allowtransparency="true" allow="encrypted-media; clipboard-write"></iframe>
-            `;
-        } else {
-            deezerContainer.style.display = 'none';
-        }
-    }
-
-    // YouTube - Handle Array
+    // Youtube
     const ytContainer = setsSection.querySelector('.youtube-container');
     if (ytContainer && content.sets.youtube) {
         ytContainer.innerHTML = ''; // Clear existing
-        const videos = Array.isArray(content.sets.youtube) ? content.sets.youtube : [content.sets.youtube];
 
-        // Create a grid for videos if there are multiple
+        // Handle new structure (object) vs old (array) for backward compatibility if needed, but we updated content.js
+        const youtubeData = content.sets.youtube;
+        const videos = youtubeData.videos || [];
+
+        // Title and Description for YouTube
+        if (youtubeData.sectionTitle) {
+            const h3 = document.createElement('h3');
+            h3.textContent = youtubeData.sectionTitle;
+            ytContainer.appendChild(h3);
+        }
+        if (youtubeData.description) {
+            const p = document.createElement('p');
+            p.textContent = youtubeData.description;
+            ytContainer.appendChild(p);
+        }
+
+        // Wrapper for grid to keep titles separate from grid layout if we want, 
+        // OR we apply grid to a sub-container. 
+        // Current CSS might apply grid to .youtube-container directly.
+        // If .youtube-container is grid, titles will be grid items.
+        // Let's create a videos div to hold the grid items to be safe/cleaner
+
+        const videoGrid = document.createElement('div');
+        videoGrid.className = 'video-grid'; // We might need to add css for this or repurpose existing styles
+        // Checking existing logic:
+        // ytContainer.style.display = 'grid'; was set in JS previously.
+
         if (videos.length > 1) {
-            ytContainer.style.display = 'grid';
-            // Force 2 columns as requested for the 2x2 grid layout
-            ytContainer.style.gridTemplateColumns = 'repeat(2, 1fr)';
-            ytContainer.style.gap = '1.5rem';
+            videoGrid.style.display = 'grid';
+            videoGrid.style.gridTemplateColumns = 'repeat(2, 1fr)';
+            videoGrid.style.gap = '1.5rem';
+            videoGrid.style.width = '100%';
         }
 
         videos.forEach(video => {
@@ -187,8 +245,27 @@ function loadSets() {
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen></iframe>
             `;
-            ytContainer.appendChild(wrapper);
+            videoGrid.appendChild(wrapper);
         });
+        ytContainer.appendChild(videoGrid);
+
+        if (content.sets.channelUrl) {
+            const btnWrapper = document.createElement('div');
+            btnWrapper.style.textAlign = 'center';
+            btnWrapper.style.marginTop = '2rem';
+            if (videos.length > 1) {
+                btnWrapper.style.gridColumn = '1 / -1';
+            }
+
+            const btn = document.createElement('a');
+            btn.href = content.sets.channelUrl;
+            btn.target = '_blank';
+            btn.className = 'btn-primary';
+            btn.textContent = 'Ver canal completo';
+
+            btnWrapper.appendChild(btn);
+            ytContainer.appendChild(btnWrapper);
+        }
     }
 }
 

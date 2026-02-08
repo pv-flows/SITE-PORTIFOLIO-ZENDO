@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
@@ -12,7 +16,6 @@ body {
     /* More breathing room */
     letter-spacing: 0.02em;
     /* Slight airiness */
-    scroll-behavior: smooth;
 }
 
 /* Tipografia: Minimalist & Expressive */
