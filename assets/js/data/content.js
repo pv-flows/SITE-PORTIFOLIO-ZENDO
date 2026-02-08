@@ -3,7 +3,7 @@ export const content = {
         title: "ZENDO | Cantor e Compositor",
         description: "Portfólio oficial de Zendo. Artista de Recife que mistura Pop, Hip-hop, R&B e Brega com sensualidade e sensibilidade. Confira o EP Âmago e o hit Sagaz.",
         keywords: "Zendo, Cantor, Compositor, Recife, Pop, Hip-Hop, R&B, Brega, Música Brasileira",
-        author: "Zendo",
+        author: "Zendo, pv-flows",
         og: {
             title: "ZENDO | Cantor e Compositor",
             description: "Música para sentir antes de entender.",
@@ -117,7 +117,7 @@ export const content = {
             { href: "https://music.apple.com/br/artist/zendo/1610230413", text: "Apple Music" },
             { href: "https://www.youtube.com/@zendo", text: "YouTube" }
         ],
-        copyright: "&copy; 2026 Zendo. Todos os direitos reservados."
+        copyright: "&copy; 2026 Zendo. Desenvolvido por <a href='https://github.com/pv-flows' target='_blank' style='color:inherit; text-decoration: underline;'>pv-flows</a>. Todos os direitos reservados."
     }
 };
 
