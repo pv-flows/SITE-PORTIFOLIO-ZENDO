@@ -17,8 +17,11 @@ export function initNavbar() {
                     top: '70px',
                     left: '0',
                     width: '100%',
-                    background: 'rgba(10,10,10,0.95)',
-                    padding: '2rem'
+                    background: 'rgba(253, 251, 251, 0.98)',
+                    backdropFilter: 'blur(15px)',
+                    padding: '2rem',
+                    borderBottom: '1px solid rgba(84, 110, 122, 0.1)',
+                    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.08)'
                 });
             }
         });
