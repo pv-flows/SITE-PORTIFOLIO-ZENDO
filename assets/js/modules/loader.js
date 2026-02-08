@@ -61,8 +61,71 @@ function loadHero() {
         const p = heroContent.querySelector('p');
         if (p) p.textContent = content.hero.subtitle;
 
+        // Check for CD Player or CTA button
         const btn = heroContent.querySelector('.btn-primary');
-        if (btn) {
+
+        if (content.hero.playerDisco) {
+            // Remove existing button if present
+            if (btn) btn.remove();
+
+            // Check if player already exists
+            let playerContainer = heroContent.querySelector('.player-disco-container');
+            if (!playerContainer) {
+                playerContainer = document.createElement('div');
+                playerContainer.className = 'player-disco-container';
+
+                // Disco de CD prata simples
+                const disco = document.createElement('div');
+                disco.className = 'disco-prata';
+                disco.setAttribute('role', 'button');
+                disco.setAttribute('aria-label', 'Clique para rolar até o Spotify');
+                disco.setAttribute('tabindex', '0');
+
+                // Camada do efeito prisma
+                const efeitoPrisma = document.createElement('div');
+                efeitoPrisma.className = 'efeito-prisma';
+                disco.appendChild(efeitoPrisma);
+
+                // SVG com texto curvo FORA do CD
+                if (content.hero.playerDisco.label) {
+                    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                    svg.setAttribute('class', 'texto-curvo-cd');
+                    svg.setAttribute('viewBox', '0 0 280 280');
+
+                    // Define o path circular (raio maior para ficar fora do disco)
+                    const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+                    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                    path.setAttribute('id', 'circulo-texto');
+                    // Path circular com raio 130 (disco tem raio 120)
+                    path.setAttribute('d', 'M 140,10 A 130,130 0 1,1 139.99,10');
+                    defs.appendChild(path);
+                    svg.appendChild(defs);
+
+                    // Texto que segue o path
+                    const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                    const textPath = document.createElementNS('http://www.w3.org/2000/svg', 'textPath');
+                    textPath.setAttribute('href', '#circulo-texto');
+                    textPath.setAttribute('startOffset', '75%'); // 270 graus = 75% do círculo
+                    textPath.setAttribute('text-anchor', 'middle');
+                    textPath.textContent = content.hero.playerDisco.label.toUpperCase();
+                    text.appendChild(textPath);
+                    svg.appendChild(text);
+
+                    playerContainer.appendChild(svg);
+                }
+
+                playerContainer.appendChild(disco);
+
+                if (content.hero.playerDisco.label) {
+                    const label = document.createElement('span');
+                    label.className = 'player-disco-label';
+                    label.textContent = content.hero.playerDisco.label;
+                    playerContainer.appendChild(label);
+                }
+
+                heroContent.appendChild(playerContainer);
+            }
+        } else if (btn && content.hero.cta) {
             btn.href = content.hero.cta.href;
             btn.textContent = content.hero.cta.text;
         }

@@ -25,9 +25,11 @@ export const content = {
         ]
     },
     hero: {
-        title: "ZENDO",
-        subtitle: "Música para sentir antes de entender.",
-        cta: { href: "#sets", text: "Ouvir Agora" }
+        title: "",
+        subtitle: "",
+        playerDisco: {
+            label: "Clique para ouvir"
+        }
     },
     bio: {
         title: "O Artista",

@@ -387,3 +387,288 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* ============================================
+   CD Player - Disco Prismático Simples
+   ============================================ */
+
+.player-disco-container {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateX(70%) translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    z-index: 999;
+}
+
+/* Disco de CD Prata */
+.disco-prata {
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    border: 2px solid #546e7a;
+
+    /* Visual clássico de CD prata */
+    background:
+        radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.6) 0%, transparent 40%),
+        radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.3) 0%, transparent 30%),
+        conic-gradient(from 0deg,
+            #c0c0c0 0deg,
+            #e8e8e8 30deg,
+            #a0a0a0 60deg,
+            #d0d0d0 90deg,
+            #b0b0b0 120deg,
+            #e0e0e0 150deg,
+            #c0c0c0 180deg,
+            #d8d8d8 210deg,
+            #a8a8a8 240deg,
+            #c8c8c8 270deg,
+            #b8b8b8 300deg,
+            #e0e0e0 330deg,
+            #c0c0c0 360deg);
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.3),
+        inset 0 0 20px rgba(255, 255, 255, 0.3);
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Furo central do CD */
+.disco-prata::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #1a1a1a 0%, #333 100%);
+    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* Anel de dados do CD */
+.disco-prata::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 1px solid rgba(150, 150, 150, 0.5);
+}
+
+/* Hover - apenas efeito prismático, SEM movimento */
+.disco-prata:hover {
+    transform: scale(1.05);
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.4),
+        inset 0 0 30px rgba(255, 255, 255, 0.4),
+        0 0 25px rgba(255, 255, 255, 0.2);
+}
+
+.disco-prata:hover .efeito-prisma {
+    opacity: 1;
+}
+
+/* Efeito prisma - ativado no hover e no click */
+.efeito-prisma {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0;
+
+    /* Reflexos prismáticos em tons pastéis */
+    background:
+        conic-gradient(from 0deg,
+            transparent 0deg,
+            rgba(255, 182, 193, 0.4) 30deg,
+            transparent 60deg,
+            rgba(176, 224, 230, 0.4) 90deg,
+            transparent 120deg,
+            rgba(255, 218, 185, 0.4) 150deg,
+            transparent 180deg,
+            rgba(221, 160, 221, 0.4) 210deg,
+            transparent 240deg,
+            rgba(152, 251, 152, 0.4) 270deg,
+            transparent 300deg,
+            rgba(255, 255, 224, 0.4) 330deg,
+            transparent 360deg);
+
+    transition: opacity 0.4s ease;
+}
+
+/* Estado tocando - gira 360° com efeito prisma e volta ao estado inicial */
+.disco-prata.tocando {
+    animation: girar-disco-360 2.5s ease-in-out forwards;
+}
+
+.disco-prata.tocando .efeito-prisma {
+    opacity: 1;
+}
+
+.disco-prata.tocando:hover {
+    transform: none;
+}
+
+/* Animações */
+@keyframes girar-disco-360 {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes girar-texto-180 {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(180deg);
+        opacity: 0;
+    }
+}
+
+@keyframes recolher-cd {
+    0% {
+        transform: translateX(70%) translateY(-50%);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(150%) translateY(-50%);
+        opacity: 0;
+    }
+}
+
+/* Container recolhe para a esquerda após animação */
+.player-disco-container.recolhido {
+    animation: recolher-cd 1s ease-in-out forwards;
+}
+
+/* Animações de ejeção - CD e texto voltam da esquerda para a direita */
+@keyframes ejetar-cd {
+    0% {
+        transform: translateX(150%) translateY(-50%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(70%) translateY(-50%);
+        opacity: 1;
+    }
+}
+
+@keyframes ejetar-texto {
+    0% {
+        transform: translate(-50%, -50%) rotate(180deg);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+/* Estado ejetando - CD e texto voltam à posição inicial */
+.player-disco-container.ejetando {
+    animation: ejetar-cd 1.5s ease-out forwards;
+}
+
+.player-disco-container.ejetando .texto-curvo-cd {
+    animation: ejetar-texto 1.5s ease-out forwards;
+}
+
+
+/* Texto curvo ao redor do CD - fora do disco */
+.texto-curvo-cd {
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 1;
+    transition: opacity 0.3s ease;
+}
+
+.texto-curvo-cd text {
+    font-family: var(--font-heading);
+    font-size: 14px;
+    font-weight: 600;
+    fill: #546e7a;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+/* Texto gira 180° e some quando CD está tocando */
+.player-disco-container.tocando .texto-curvo-cd {
+    animation: girar-texto-180 2.5s ease-in-out forwards;
+}
+
+/* Label do player - oculto */
+.player-disco-label {
+    display: none;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+
+    .disco-prata {
+        width: 180px;
+        height: 180px;
+        /* Remove o quadrado azul de tap no mobile */
+        -webkit-tap-highlight-color: transparent;
+        outline: none;
+    }
+
+    .disco-prata::before {
+        width: 28px;
+        height: 28px;
+    }
+
+    .disco-prata::after {
+        width: 60px;
+        height: 60px;
+    }
+
+    /* Texto curvo mais próximo e menor no mobile */
+    .texto-curvo-cd {
+        width: 210px;
+        height: 210px;
+    }
+
+    .texto-curvo-cd text {
+        font-size: 13px;
+        letter-spacing: 2px;
+    }
+
+    .player-disco-label {
+        font-size: 0.7rem;
+        letter-spacing: 2px;
+    }
+}
