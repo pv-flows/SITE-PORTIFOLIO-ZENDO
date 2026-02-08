@@ -81,7 +81,7 @@ export const content = {
         }
     },
     gallery: {
-        title: "Clipes & Visuais",
+        title: "Ensaios & Imagens",
         images: [
             { src: "assets/img/foto1.jpg", alt: "Zendo - Clipe Sagaz" },
             { src: "assets/img/foto2.jpg", alt: "Zendo - Visualizer Âmago" },
