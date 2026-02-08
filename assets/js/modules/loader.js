@@ -223,15 +223,13 @@ function loadSets() {
         // Let's create a videos div to hold the grid items to be safe/cleaner
 
         const videoGrid = document.createElement('div');
-        videoGrid.className = 'video-grid'; // We might need to add css for this or repurpose existing styles
-        // Checking existing logic:
-        // ytContainer.style.display = 'grid'; was set in JS previously.
+        // Class will be assigned based on count
 
         if (videos.length > 1) {
-            videoGrid.style.display = 'grid';
-            videoGrid.style.gridTemplateColumns = 'repeat(2, 1fr)';
-            videoGrid.style.gap = '1.5rem';
-            videoGrid.style.width = '100%';
+            // Grid layout handled in CSS via .video-grid class
+            videoGrid.className = 'video-grid';
+        } else {
+            videoGrid.className = 'single-video';
         }
 
         videos.forEach(video => {
